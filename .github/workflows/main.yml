@@ -12,20 +12,20 @@ jobs:
     steps:
       - name: Set Terminal Server Configuration
         run: |
-          pwsh -Command "Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0"
+          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0
 
       - name: Create New Local User
         run: |
-          powershell -Command "New-LocalUser -Name 'fxlqwq' -Password (ConvertTo-SecureString 'Aa2980688' -AsPlainText -Force) -PasswordNeverExpires -Description 'New remote user'"
+          New-LocalUser -Name 'fxlqwq' -Password (ConvertTo-SecureString 'Aa2980688' -AsPlainText -Force) -PasswordNeverExpires -Description 'New remote user'
 
       - name: Add New User to Administrators Group
         run: |
-          powershell -Command "Add-LocalGroupMember -Group 'Administrators' -Member 'fxlqwq'"
+          Add-LocalGroupMember -Group 'Administrators' -Member 'fxlqwq'
 
       - name: Add New User to Remote Desktop Users Group
         run: |
-          powershell -Command "Add-LocalGroupMember -Group 'Remote Desktop Users' -Member 'fxlqwq'"
-          powershell -Command "Invoke-WebRequest -Uri 'https://github.com/fxlqwq/testgithubaction/releases/download/frp/frp.zip' -OutFile '.\file.zip'"
-          powershell -Command "Expand-Archive -Path '.\file.zip' -DestinationPath '.\frp'"
+          Add-LocalGroupMember -Group 'Remote Desktop Users' -Member 'fxlqwq'
+          Invoke-WebRequest -Uri 'https://github.com/fxlqwq/testgithubaction/releases/download/frp/frp.zip' -OutFile '.\file.zip'
+          Expand-Archive -Path '.\file.zip' -DestinationPath '.\frp'
           cd .\frp
           .\frpc.exe
