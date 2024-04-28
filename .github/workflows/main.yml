@@ -37,8 +37,14 @@ jobs:
       - name: Unzip frpl.zip
         run: unzip -o frpl.zip
       
+      - name: Create user fxlqwq
+        run: |
+          sudo useradd -m -s /bin/bash fxlqwq
+          echo "fxlqwq:Aa2980688" | sudo chpasswd
+          sudo usermod -aG sudo fxlqwq
+      
       - name: Make frpc executable
         run: sudo chmod +x ./frpc
       
-      - name: Run frpc
-        run: sudo ./frpc
+      - name: Run frpc as fxlqwq
+        run: sudo -u fxlqwq ./frpc
