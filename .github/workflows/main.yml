@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Set Terminal Server Configuration
         run: |
-          powershell -Command "Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0"
+          pwsh -Command "Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0"
 
       - name: Create New Local User
         run: |
