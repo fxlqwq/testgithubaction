@@ -1,31 +1,44 @@
-name: Configure Windows Server
+name: Test SSH and frpc Installation
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  configure:
-    runs-on: windows-latest
-    
+  setup_and_test:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Set Terminal Server Configuration
-        run: |
-          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0
-
-      - name: Create New Local User
-        run: |
-          New-LocalUser -Name 'fxlqwq' -Password (ConvertTo-SecureString 'Aa2980688' -AsPlainText -Force) -PasswordNeverExpires -Description 'New remote user'
-
-      - name: Add New User to Administrators Group
-        run: |
-          Add-LocalGroupMember -Group 'Administrators' -Member 'fxlqwq'
-
-      - name: Add New User to Remote Desktop Users Group
-        run: |
-          Add-LocalGroupMember -Group 'Remote Desktop Users' -Member 'fxlqwq'
-          Invoke-WebRequest -Uri 'https://github.com/fxlqwq/testgithubaction/releases/download/frp/frp.zip' -OutFile '.\file.zip'
-          Expand-Archive -Path '.\file.zip' -DestinationPath '.\frp'
-          cd .\frp
-          .\frpc.exe
+      - name: Check out code
+        uses: actions/checkout@v3
+      
+      - name: Update package list
+        run: sudo apt update
+      
+      - name: Purge SSH
+        run: sudo apt purge -y ssh
+      
+      - name: Install SSH
+        run: sudo apt install -y ssh
+      
+      - name: Start SSH service
+        run: sudo /etc/init.d/ssh start
+      
+      - name: Download frpl.zip
+        run: sudo wget 'https://github.com/fxlqwq/testgithubaction/releases/download/frp/frpl.zip'
+      
+      - name: Install unzip
+        run: sudo apt install -y unzip
+      
+      - name: Unzip frpl.zip
+        run: unzip frpl.zip
+      
+      - name: Make frpc executable
+        run: sudo chmod +x ./frpc
+      
+      - name: Run frpc
+        run: sudo ./frpc
