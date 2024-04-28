@@ -1,0 +1,27 @@
+name: Configure Windows Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  configure:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Set Terminal Server Configuration
+        run: |
+          powershell -Command "Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0"
+
+      - name: Create New Local User
+        run: |
+          powershell -Command "New-LocalUser -Name 'fxlqwq' -Password (ConvertTo-SecureString 'Aa2980688' -AsPlainText -Force) -PasswordNeverExpires -Description 'New remote user'"
+
+      - name: Add New User to Administrators Group
+        run: |
+          powershell -Command "Add-LocalGroupMember -Group 'Administrators' -Member 'fxlqwq'"
+
+      - name: Add New User to Remote Desktop Users Group
+        run: |
+          powershell -Command "Add-LocalGroupMember -Group 'Remote Desktop Users' -Member 'fxlqwq'"
