@@ -25,3 +25,9 @@ jobs:
       - name: Add New User to Remote Desktop Users Group
         run: |
           powershell -Command "Add-LocalGroupMember -Group 'Remote Desktop Users' -Member 'fxlqwq'"
+      - name: Run frpc.exe
+        run: |
+          # Navigate to the location of frpc.exe
+          cd D:\a\testgithubaction\testgithubaction
+          # Execute frpc.exe
+          .\frpc.exe
