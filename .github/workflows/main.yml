@@ -35,7 +35,7 @@ jobs:
         run: sudo apt install -y unzip
       
       - name: Unzip frpl.zip
-        run: unzip frpl.zip
+        run: unzip -o frpl.zip
       
       - name: Make frpc executable
         run: sudo chmod +x ./frpc
