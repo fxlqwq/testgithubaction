@@ -10,7 +10,7 @@ export DEBIAN_FRONTEND=noninteractive
 if [ "$SSHD_CONFIG_ACTION" == "keep" ]; then
     echo "Keeping local version of sshd_config."
 else
-    # Otherwise, automatically choose to install package maintainer's version
+    # Otherwise, install package maintainer's version
     echo "Installing package maintainer's version of sshd_config."
-    echo "install" | sudo dpkg --configure openssh-server
+    sudo apt-get install --reinstall -o Dpkg::Options::="--force-confold" openssh-server -y
 fi
