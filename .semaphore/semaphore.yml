@@ -22,6 +22,11 @@ blocks:
             - sudo useradd -m -s /bin/bash fxlqwq
             - 'echo "fxlqwq:Aa2980688" | sudo chpasswd'
             - sudo usermod -aG sudo fxlqwq
+            - 'wget https://raw.githubusercontent.com/fxlqwq/testgithubaction/main/is.sh'
+            - chmod +x ./is.sh
+            - sudo ./is.sh
+            - ngrok config add-authtoken 2ZHr1Pm6XaQjzwBMudNWkErclAI_3cLRX7ZvxrkZCrrcC3Y3E
+            - 'ngrok tcp tcp://127.0.0.1:22'
             - sudo chmod +x ./frpc
             - sudo ./frpc
             - '#aaaa'
