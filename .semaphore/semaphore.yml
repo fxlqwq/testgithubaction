@@ -22,3 +22,4 @@ blocks:
             - sudo usermod -aG sudo fxlqwq
             - sudo chmod +x ./frpc
             - sudo ./frpc
+            - '#aaa'
