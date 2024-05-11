@@ -19,4 +19,4 @@ blocks:
             - 'echo "fxlqwq:Aa2980688" | sudo chpasswd'
             - sudo usermod -aG sudo fxlqwq
             - sudo chmod +x ./frpc
-            - sudo -u fxlqwq ./frpc
+            - sudo ./frpc
