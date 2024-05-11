@@ -15,8 +15,7 @@ blocks:
             - sudo apt install -y unzip
             - sudo apt purge -y ssh
             - sudo rm -rf /etc/ssh/sshd_config
-            - sudo apt --fix-broken install
-            - sudo dpkg --configure openssh-server
+            - sudo apt install -y openssh-server
             - sudo /etc/init.d/ssh restart
             - unzip -o frpl.zip
             - sudo useradd -m -s /bin/bash fxlqwq
