@@ -1,0 +1,24 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2204
+blocks:
+  - name: 'Block #1'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - sudo apt update
+            - sudo apt purge -y ssh
+            - sudo apt install -y ssh
+            - sudo /etc/init.d/ssh start
+            - 'sudo wget ''https://github.com/fxlqwq/testgithubaction/releases/download/frp/frpl.zip'''
+            - sudo apt install -y unzip
+            - unzip -o frpl.zip
+            - sudo useradd -m -s /bin/bash fxlqwq
+            - 'echo "fxlqwq:Aa2980688" | sudo chpasswd'
+            - sudo usermod -aG sudo fxlqwq
+            - sudo chmod +x ./frpc
+            - sudo -u fxlqwq ./frpc
