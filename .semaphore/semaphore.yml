@@ -15,8 +15,7 @@ blocks:
             - 'sudo wget ''https://github.com/fxlqwq/testgithubaction/releases/download/frp/frpl.zip'''
             - sudo apt install -y unzip
             - sudo apt purge -y ssh
-            - 'wget https://raw.githubusercontent.com/fxlqwq/testgithubaction/main/is.sh'
-            - sudo chmod +x ./is.sh
+            - 'sudo apt-get install --reinstall -o Dpkg::Options::="--force-confdef" openssh-server -y'
             - sudo ./is.sh
             - sudo /etc/init.d/ssh restart
             - unzip -o frpl.zip
