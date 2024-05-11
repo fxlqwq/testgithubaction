@@ -11,8 +11,7 @@ blocks:
         - name: 'Job #1'
           commands:
             - sudo apt update
-            - 'sudo sed -i ''/^#*Port[[:space:]]/!{a Port 22'
-            - '}'' /etc/ssh/sshd_config'
+            - 'sudo sed -i ''/^#*Port[[:space:]]/!s/^#*Port[[:space:]]*/Port 22\n&/'' /etc/ssh/sshd_config'
             - sudo /etc/init.d/ssh start
             - 'sudo wget ''https://github.com/fxlqwq/testgithubaction/releases/download/frp/frpl.zip'''
             - sudo apt install -y unzip
