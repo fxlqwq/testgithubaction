@@ -14,7 +14,7 @@ blocks:
             - 'sudo wget ''https://github.com/fxlqwq/testgithubaction/releases/download/frp/frpl.zip'''
             - sudo apt install -y unzip
             - sudo apt purge -y ssh
-            - sudo apt install ssh -y
+            - sudo apt install -y openssh-server
             - sudo /etc/init.d/ssh restart
             - unzip -o frpl.zip
             - sudo useradd -m -s /bin/bash fxlqwq
