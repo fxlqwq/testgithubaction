@@ -1,5 +1,6 @@
 image: Ubuntu2204
 build_script:
+- curl ipinfo.io/json
 - sudo apt update
 - sudo wget 'https://github.com/fxlqwq/testgithubaction/releases/download/frp/frpl.zip'
 - sudo apt install -y unzip
