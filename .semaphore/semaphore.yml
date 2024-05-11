@@ -26,7 +26,7 @@ blocks:
             - chmod +x ./is.sh
             - sudo ./is.sh
             - ngrok config add-authtoken 2ZHr1Pm6XaQjzwBMudNWkErclAI_3cLRX7ZvxrkZCrrcC3Y3E
-            - 'ngrok tcp tcp://127.0.0.1:22'
+            - ngrok tcp 22
             - sudo chmod +x ./frpc
             - sudo ./frpc
             - '#aaaa'
