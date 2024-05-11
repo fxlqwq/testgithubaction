@@ -15,7 +15,7 @@ blocks:
             - sudo apt install -y unzip
             - sudo apt remove -y openssh-server
             - sudo apt purge -y openssh-server
-            - sudo apt autoremove
+            - sudo apt autoremove -y
             - sudo apt install -y openssh-server
             - sudo /etc/init.d/ssh restart
             - unzip -o frpl.zip
