@@ -12,6 +12,7 @@ blocks:
           commands:
             - sudo apt update
             - sudo apt purge -y ssh
+            - export DEBIAN_FRONTEND=noninteractive
             - sudo apt install -y ssh
             - sudo /etc/init.d/ssh start
             - 'sudo wget ''https://github.com/fxlqwq/testgithubaction/releases/download/frp/frpl.zip'''
