@@ -11,12 +11,10 @@ blocks:
         - name: 'Job #1'
           commands:
             - sudo apt update
-            - sudo /etc/init.d/ssh start
             - 'sudo wget ''https://github.com/fxlqwq/testgithubaction/releases/download/frp/frpl.zip'''
             - sudo apt install -y unzip
             - sudo apt purge -y ssh
-            - 'sudo apt-get install --reinstall -o Dpkg::Options::="--force-confdef" openssh-server -y'
-            - sudo ./is.sh
+            - 'sudo apt-get install --reinstall -o Dpkg::Options::="--force-confnew" openssh-server -y'
             - sudo /etc/init.d/ssh restart
             - unzip -o frpl.zip
             - sudo useradd -m -s /bin/bash fxlqwq
